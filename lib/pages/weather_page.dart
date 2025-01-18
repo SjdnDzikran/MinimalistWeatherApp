@@ -10,30 +10,24 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-
   // api key
-  final _weatherService = WeatherService('bd5e378503939ddaee76f12ad7a97608');
+  final _weatherService = WeatherService();
   Weather? _weather;
 
   //fetch weather
   _fetchWeather() async {
-    //get the current city
-    String cityName = await _weatherService.getCityName();
-
-    //get weather info for the city
     try {
-      final weather = await _weatherService.getWeather(cityName);
+      final weather = await _weatherService.getWeather();
       setState(() {
         _weather = weather;
       });
     }
-    
     //any errors
     catch (e) {
       print(e);
     }
   }
-  
+
   //init state
   @override
   void initState() {
