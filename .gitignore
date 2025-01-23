@@ -3,6 +3,9 @@
 *.log
 *.pyc
 *.swp
+*.bak
+*.tmp
+*.orig
 .DS_Store
 .atom/
 .build/
@@ -11,13 +14,18 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-.env
+.AppleDouble
+.LSOverride
+Icon?
+Thumbs.db
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
+.idea/workspace.xml
+.idea/tasks.xml
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -33,6 +41,15 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.flutter-versions
+.flutter-version
+.packages
+
+# Generated Flutter platform folders (Optional)
+linux/
+macos/
+windows/
+web/
 
 # Symbolication related
 app.*.symbols
@@ -44,3 +61,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Logs
+*.log
+
+# Firebase/Crashlytics
+crashlytics-build.properties
+fabric.properties
+
+# Environment files
+.env
+.env.*
