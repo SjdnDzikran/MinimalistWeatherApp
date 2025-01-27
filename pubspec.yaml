@@ -13,6 +13,7 @@ dependencies:
   geocoding: ^3.0.0
   geolocator: ^13.0.2
   http: ^1.2.2
+  logger: ^2.5.0
   lottie: ^3.3.0
 
 dev_dependencies:

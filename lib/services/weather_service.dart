@@ -4,9 +4,11 @@ import 'package:minimalist_weather_app/models/weather_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:logger/logger.dart';
 
 class WeatherService {
   static const baseURL = 'http://api.openweathermap.org/data/2.5/weather';
+  final logger = Logger();
   final String apiKey;
 
   WeatherService() : apiKey = dotenv.env['WEATHER_API_KEY'] ?? '';
@@ -42,9 +44,9 @@ class WeatherService {
           String? cityName = placemarks[0].locality;
           return cityName ?? "";
 
-      } catch (e) {
-          print('Error getting city name: $e');
-          return "";
+      } catch (e, stacktrace) {
+          logger.e('Error getting city name: $e', error: e, stackTrace: stacktrace);
+          throw Exception('Failed to get city name');
       }
   }
 

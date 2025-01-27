@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minimalist_weather_app/models/weather_model.dart';
 import 'package:minimalist_weather_app/services/weather_service.dart';
+import 'package:logger/logger.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key});
@@ -12,6 +13,7 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   // api key
   final _weatherService = WeatherService();
+  final logger = Logger();
   Weather? _weather;
 
   //fetch weather
@@ -23,15 +25,14 @@ class _WeatherPageState extends State<WeatherPage> {
       });
     }
     //any errors
-    catch (e) {
-      print(e);
+    catch (e, stacktrace) {
+      logger.e('Error Fetching weather: $e', error: e, stackTrace: stacktrace);
     }
   }
 
   //init state
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _fetchWeather();
   }
