@@ -38,9 +38,9 @@ class _WeatherPageState extends State<WeatherPage> {
     _fetchWeather();
   }
 
-  String getWeatherIcon(String? weather){
-    switch(weather?.toLowerCase()){
-      case 'clouds': 
+  String getWeatherIcon(String? weather) {
+    switch (weather?.toLowerCase()) {
+      case 'clouds':
       case 'fog':
         return 'assets/cloud.json';
       case 'haze':
@@ -65,15 +65,17 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(_weather?.cityName ?? "loading city .."),
-            Lottie.asset(getWeatherIcon(_weather?.weatherCondition)),
-            Text('${_weather?.temperature.round().toString()}°C'),
-            Text(_weather?.weatherCondition ?? 'null'),
-          ],
-        ),
+        child: _weather == null
+            ? const Text("Loading...")
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(_weather!.cityName),
+                  Lottie.asset(getWeatherIcon(_weather!.weatherCondition)),
+                  Text('${_weather!.temperature.round()}°C'),
+                  Text(_weather!.weatherCondition),
+                ],
+              ),
       ),
     );
   }
