@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:minimalist_weather_app/models/weather_model.dart';
 import 'package:minimalist_weather_app/services/weather_service.dart';
 import 'package:logger/logger.dart';
@@ -37,6 +38,29 @@ class _WeatherPageState extends State<WeatherPage> {
     _fetchWeather();
   }
 
+  String getWeatherIcon(String? weather){
+    switch(weather?.toLowerCase()){
+      case 'clouds': 
+      case 'fog':
+        return 'assets/cloud.json';
+      case 'haze':
+      case 'dust':
+        return 'assets/haze.json';
+      case 'mist':
+        return 'assets/mist.json';
+      case 'rain':
+      case 'drizzle':
+      case 'shower rain':
+        return 'assets/rain.json';
+      case 'smoke':
+        return 'assets/smoke.json';
+      case 'thunderstorm':
+        return 'assets/thunderstorm.json';
+      default:
+        return 'assets/sunny.json';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +69,9 @@ class _WeatherPageState extends State<WeatherPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(_weather?.cityName ?? "loading city .."),
+            Lottie.asset(getWeatherIcon(_weather?.weatherCondition)),
             Text('${_weather?.temperature.round().toString()}°C'),
+            Text(_weather?.weatherCondition ?? 'null'),
           ],
         ),
       ),
