@@ -31,6 +31,7 @@ class WeatherService {
           LocationPermission permission = await Geolocator.checkPermission();
           if (permission == LocationPermission.denied) {
               permission = await Geolocator.requestPermission();
+              if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) return 'London';
           }
 
           Position position = await Geolocator.getCurrentPosition(
